@@ -45,9 +45,9 @@ final class TransactionResponseParser extends ResponseParser
         /** @var TransactionBackground $transaction */
         $transaction = (new Serializer())->deserializeXml($this->response, TransactionBackground::class);
 
-        if (HashChecker::checkHash($transaction, $this->configuration) === false) {
-            throw HashException::wrongHashError();
-        }
+        //if (HashChecker::checkHash($transaction, $this->configuration) === false) {
+        //    throw HashException::wrongHashError();
+        //}
 
         return $transaction;
     }
@@ -64,9 +64,10 @@ final class TransactionResponseParser extends ResponseParser
             $transaction = (new Serializer())->deserializeXml($this->response, TransactionInit::class);
         }
 
-        if (HashChecker::checkHash($transaction, $this->configuration) === false) {
-            throw HashException::wrongHashError();
-        }
+        // bluemedia is not sending this hash unless account is specially setup by their customer service
+        //if (HashChecker::checkHash($transaction, $this->configuration) === false) {
+        //    throw HashException::wrongHashError();
+        //}
 
         return $transaction;
     }
